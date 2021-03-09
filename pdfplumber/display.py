@@ -217,16 +217,11 @@ class PageImage(object):
         )
         return self
 
-    def debug_tablefinder(self, tf={}):
+    def debug_tablefinder(self, tf=None, table_settings={}):
         if isinstance(tf, TableFinder):
             pass
-        elif isinstance(tf, dict):
-            tf = self.page.debug_tablefinder(tf)
         else:
-            raise ValueError(
-                "Argument must be instance of TableFinder"
-                "or a TableFinder settings dict."
-            )
+            tf = self.page.debug_tablefinder(table_settings=table_settings)
 
         for table in tf.tables:
             self.debug_table(table)
